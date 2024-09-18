@@ -25,28 +25,30 @@ app.get('/api/sightings', async (req, res) => {
     }
 });
 
-// // create the POST request
-// app.post('/api/students', async (req, res) => {
-//     try {
-//         const newStudent = {
-//             firstname: req.body.firstname,
-//             lastname: req.body.lastname,
-//             iscurrent: req.body.iscurrent
-//         };
-//         //console.log([newStudent.firstname, newStudent.lastname, newStudent.iscurrent]);
-//         const result = await db.query(
-//             'INSERT INTO students(firstname, lastname, is_current) VALUES($1, $2, $3) RETURNING *',
-//             [newStudent.firstname, newStudent.lastname, newStudent.iscurrent],
-//         );
-//         console.log(result.rows[0]);
-//         res.json(result.rows[0]);
+// POST request to create new sightings
+app.post('/api/sightings', async (req, res) => {
+    try {
+        const newSighting = {
+            individual_id: req.body.individual_id,
+            sighting_date: req.body.sighting_date,
+            location: req.body.location,
+            healthy: req.body.healthy,
+            researcher_email: req.body.researcher_email
+        };
+        //console.log([newSighting.individual_id, newSighting.sighting_date, newSighting.location, newSighting.healthy, newSighting.researcher_email]);
+        const result = await db.query(
+            'INSERT INTO sightings(individual_id, sighting_date, location, healthy, researcher_email) VALUES($1, $2, $3, $4, $5) RETURNING *',
+            [newSighting.individual_id, newSighting.sighting_date, newSighting.location, newSighting.healthy, newSighting.researcher_email],
+        );
+        console.log(result.rows[0]);
+        res.json(result.rows[0]);
 
-//     } catch (e) {
-//         console.log(e);
-//         return res.status(400).json({ e });
-//     }
+    } catch (e) {
+        console.log(e);
+        return res.status(400).json({ e });
+    }
 
-// });
+});
 
 // // delete request for students
 // app.delete('/api/students/:studentId', async (req, res) => {
