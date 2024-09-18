@@ -171,6 +171,65 @@ app.get('/api/species', async (req, res) => {
     }
 });
 
+// POST request to create new individuals
+app.post('/api/species', async (req, res) => {
+    try {
+        const newSpecies = {
+            common_name: req.body.common_name,
+            scientific_name: req.body.scientific_name,
+            population: req.body.population,
+            conservation_status: req.body.conservation_status
+        };
+        //console.log([newSpecies.common_name, newSpecies.scientific_name, newSpecies.population, newSpecies.conservation_status]);
+        const result = await db.query(
+            'INSERT INTO species (common_name, scientific_name, population, conservation_status) VALUES($1, $2, $3, $4) RETURNING *',
+            [newSpecies.common_name, newSpecies.scientific_name, newSpecies.population, newSpecies.conservation_status],
+        );
+        console.log(result.rows[0]);
+        res.json(result.rows[0]);
+
+    } catch (e) {
+        console.log(e);
+        return res.status(400).json({ e });
+    }
+
+});
+
+// // delete request for species
+// app.delete('/api/species/:id', async (req, res) => {
+//     try {
+//         const speciesId = req.params.id;
+//         await db.query('DELETE FROM species WHERE id=$1', [speciesId]);
+//         console.log(`Species with the id: ${speciesId} has been deleted`);
+//         res.status(200).end();
+//     } catch (e) {
+//         console.log(e);
+//         return res.status(400).json({ e });
+
+//     }
+// });
+
+// // PUT request - Update a species 
+// app.put('/api/species/:id', async (req, res) =>{
+//     //console.log(req.params);
+//     //This will be the id that I want to find in the DB - the species to be updated
+//     const speciesId = req.params.id;
+//     const updatedSpecies = { individuals_nickname: req.body.individuals_nickname, sex: req.body.sex, species_id: req.body.species_id }
+//     console.log("In the server from the url - the individual id", individualId);
+//     console.log("In the server, from the react - the individual to be edited", updatedIndividual);
+//     // UPDATE individuals SET sex = "something" WHERE id="16";
+//     const query = `UPDATE individuals SET individuals_nickname=$1, sex=$2, species_id=$3 WHERE id=${individualId} RETURNING *`;
+//     const values = [updatedIndividual.individuals_nickname, updatedIndividual.sex, updatedIndividual.species_id];
+//     try {
+//       const updated = await db.query(query, values);
+//       console.log(updated.rows[0]);
+//       res.send(updated.rows[0]);
+  
+//     }catch(e){
+//       console.log(e);
+//       return res.status(400).json({e})
+//     }
+//   })
 
 // console.log that your server is up and running
 app.listen(PORT, () => {
