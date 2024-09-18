@@ -30,4 +30,4 @@ const Animal = ({animal, toUpdate, toDelete}) => {
 
 }
 
-export default Student;
+export default Animal;
