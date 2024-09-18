@@ -15,6 +15,8 @@ app.get('/', (req, res) => {
     res.json({ message: 'Hola, from My template ExpressJS with React-Vite' });
 });
 
+////////////////////////// sightings table //////////////////////////////
+
 // create the get request for sightings in the endpoint '/api/sightings'
 app.get('/api/sightings', async (req, res) => {
     try {
@@ -85,6 +87,22 @@ app.put('/api/sightings/:id', async (req, res) =>{
       return res.status(400).json({e})
     }
   })
+
+////////////////////////// individuals table //////////////////////////////
+
+// GET request for individuals in the endpoint '/api/individuals'
+app.get('/api/individuals', async (req, res) => {
+    try {
+        const { rows: individuals } = await db.query('SELECT * FROM individuals');
+        res.send(individuals);
+    } catch (e) {
+        return res.status(400).json({ e });
+    }
+});
+
+
+
+
 
 // console.log that your server is up and running
 app.listen(PORT, () => {
