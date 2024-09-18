@@ -159,6 +159,19 @@ app.put('/api/individuals/:id', async (req, res) =>{
     }
   })
 
+////////////////////////// species table //////////////////////////////
+
+// GET request for species in the endpoint '/api/species'
+app.get('/api/species', async (req, res) => {
+    try {
+        const { rows: species } = await db.query('SELECT * FROM species');
+        res.send(species);
+    } catch (e) {
+        return res.status(400).json({ e });
+    }
+});
+
+
 // console.log that your server is up and running
 app.listen(PORT, () => {
     console.log(`Hola, Server listening on http://localhost:${PORT}`);
