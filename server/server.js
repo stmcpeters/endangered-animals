@@ -195,19 +195,19 @@ app.post('/api/species', async (req, res) => {
 
 });
 
-// // delete request for species
-// app.delete('/api/species/:id', async (req, res) => {
-//     try {
-//         const speciesId = req.params.id;
-//         await db.query('DELETE FROM species WHERE id=$1', [speciesId]);
-//         console.log(`Species with the id: ${speciesId} has been deleted`);
-//         res.status(200).end();
-//     } catch (e) {
-//         console.log(e);
-//         return res.status(400).json({ e });
+// delete request for species
+app.delete('/api/species/:id', async (req, res) => {
+    try {
+        const speciesId = req.params.id;
+        await db.query('DELETE FROM species WHERE id=$1', [speciesId]);
+        console.log(`Species with the id: ${speciesId} has been deleted`);
+        res.status(200).end();
+    } catch (e) {
+        console.log(e);
+        return res.status(400).json({ e });
 
-//     }
-// });
+    }
+});
 
 // PUT request - Update a species 
 app.put('/api/species/:id', async (req, res) =>{
