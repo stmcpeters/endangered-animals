@@ -64,27 +64,27 @@ app.delete('/api/sightings/:id', async (req, res) => {
     }
 });
 
-// //A put request - Update a student 
-// app.put('/api/students/:studentId', async (req, res) =>{
-//     //console.log(req.params);
-//     //This will be the id that I want to find in the DB - the student to be updated
-//     const studentId = req.params.studentId
-//     const updatedStudent = { id: req.body.id, firstname: req.body.firstname, lastname: req.body.lastname, iscurrent: req.body.is_current}
-//     console.log("In the server from the url - the student id", studentId);
-//     console.log("In the server, from the react - the student to be edited", updatedStudent);
-//     // UPDATE students SET lastname = "something" WHERE id="16";
-//     const query = `UPDATE students SET firstname=$1, lastname=$2, is_current=$3 WHERE id=${studentId} RETURNING *`;
-//     const values = [updatedStudent.firstname, updatedStudent.lastname, updatedStudent.iscurrent];
-//     try {
-//       const updated = await db.query(query, values);
-//       console.log(updated.rows[0]);
-//       res.send(updated.rows[0]);
+// PUT request - Update a sighting 
+app.put('/api/sightings/:id', async (req, res) =>{
+    //console.log(req.params);
+    //This will be the id that I want to find in the DB - the sighting to be updated
+    const sightingId = req.params.id;
+    const updatedSighting = { individual_id: req.body.individual_id, sighting_date: req.body.sighting_date, location: req.body.location, healthy: req.body.healthy, researcher_email: req.body.researcher_email}
+    console.log("In the server from the url - the sighting id", sightingId);
+    console.log("In the server, from the react - the sighting to be edited", updatedSighting);
+    // UPDATE sightings SET location = "something" WHERE id="16";
+    const query = `UPDATE sightings SET individual_id=$1, sighting_date=$2, location=$3, healthy=$4, researcher_email=$5 WHERE id=${sightingId} RETURNING *`;
+    const values = [updatedSighting.individual_id, updatedSighting.sighting_date, updatedSighting.location, updatedSighting.healthy, updatedSighting.researcher_email];
+    try {
+      const updated = await db.query(query, values);
+      console.log(updated.rows[0]);
+      res.send(updated.rows[0]);
   
-//     }catch(e){
-//       console.log(e);
-//       return res.status(400).json({e})
-//     }
-//   })
+    }catch(e){
+      console.log(e);
+      return res.status(400).json({e})
+    }
+  })
 
 // console.log that your server is up and running
 app.listen(PORT, () => {
