@@ -209,27 +209,27 @@ app.post('/api/species', async (req, res) => {
 //     }
 // });
 
-// // PUT request - Update a species 
-// app.put('/api/species/:id', async (req, res) =>{
-//     //console.log(req.params);
-//     //This will be the id that I want to find in the DB - the species to be updated
-//     const speciesId = req.params.id;
-//     const updatedSpecies = { individuals_nickname: req.body.individuals_nickname, sex: req.body.sex, species_id: req.body.species_id }
-//     console.log("In the server from the url - the individual id", individualId);
-//     console.log("In the server, from the react - the individual to be edited", updatedIndividual);
-//     // UPDATE individuals SET sex = "something" WHERE id="16";
-//     const query = `UPDATE individuals SET individuals_nickname=$1, sex=$2, species_id=$3 WHERE id=${individualId} RETURNING *`;
-//     const values = [updatedIndividual.individuals_nickname, updatedIndividual.sex, updatedIndividual.species_id];
-//     try {
-//       const updated = await db.query(query, values);
-//       console.log(updated.rows[0]);
-//       res.send(updated.rows[0]);
+// PUT request - Update a species 
+app.put('/api/species/:id', async (req, res) =>{
+    //console.log(req.params);
+    //This will be the id that I want to find in the DB - the species to be updated
+    const speciesId = req.params.id;
+    const updatedSpecies = { common_name: req.body.common_name, scientific_name: req.body.scientific_name, population: req.body.population, conservation_status: req.body.conservation_status }
+    console.log("In the server from the url - the species id", speciesId);
+    console.log("In the server, from the react - the species to be edited", updatedSpecies);
+    // UPDATE species SET population = "something" WHERE id="16";
+    const query = `UPDATE species SET common_name=$1, scientific_name=$2, population=$3, conservation_status=$4 WHERE id=${speciesId} RETURNING *`;
+    const values = [updatedSpecies.common_name, updatedSpecies.scientific_name, updatedSpecies.population, updatedSpecies.conservation_status];
+    try {
+      const updated = await db.query(query, values);
+      console.log(updated.rows[0]);
+      res.send(updated.rows[0]);
   
-//     }catch(e){
-//       console.log(e);
-//       return res.status(400).json({e})
-//     }
-//   })
+    }catch(e){
+      console.log(e);
+      return res.status(400).json({e})
+    }
+  })
 
 // console.log that your server is up and running
 app.listen(PORT, () => {
