@@ -123,19 +123,19 @@ app.post('/api/individuals', async (req, res) => {
 
 });
 
-// // delete request for individuals
-// app.delete('/api/individuals/:id', async (req, res) => {
-//     try {
-//         const individualId = req.params.id;
-//         await db.query('DELETE FROM individuals WHERE id=$1', [individualId]);
-//         console.log(`Individual with the id: ${individualId} has been deleted`);
-//         res.status(200).end();
-//     } catch (e) {
-//         console.log(e);
-//         return res.status(400).json({ e });
+// delete request for individuals
+app.delete('/api/individuals/:id', async (req, res) => {
+    try {
+        const individualId = req.params.id;
+        await db.query('DELETE FROM individuals WHERE id=$1', [individualId]);
+        console.log(`Individual with the id: ${individualId} has been deleted`);
+        res.status(200).end();
+    } catch (e) {
+        console.log(e);
+        return res.status(400).json({ e });
 
-//     }
-// });
+    }
+});
 
 // PUT request - Update an individual 
 app.put('/api/individuals/:id', async (req, res) =>{
