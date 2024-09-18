@@ -100,7 +100,28 @@ app.get('/api/individuals', async (req, res) => {
     }
 });
 
+// POST request to create new individuals
+app.post('/api/individuals', async (req, res) => {
+    try {
+        const newIndividual = {
+            individuals_nickname: req.body.individuals_nickname,
+            sex: req.body.sex,
+            species_id: req.body.species_id
+        };
+        //console.log([newIndividual.individuals_nickname, newIndividual.sex, newIndividual.species_id]);
+        const result = await db.query(
+            'INSERT INTO individuals (individuals_nickname, sex, species_id) VALUES($1, $2, $3) RETURNING *',
+            [newIndividual.individuals_nickname, newIndividual.sex, newIndividual.species_id],
+        );
+        console.log(result.rows[0]);
+        res.json(result.rows[0]);
 
+    } catch (e) {
+        console.log(e);
+        return res.status(400).json({ e });
+    }
+
+});
 
 
 
