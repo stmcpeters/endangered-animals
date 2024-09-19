@@ -19,7 +19,7 @@ a.navbar-brand {
   margin-left: 5em;
 }
 
-.list-students {
+.list-sightings {
   text-align: center;
   margin-top: 25px;
   flex: 1
@@ -44,7 +44,8 @@ input[type=text] {
   width: 100%;
   font-size: 15px;
   border-radius: 2px;
-  border: 3px solid #98d0f1
+  border: 3px solid #98d0f1;
+  margin-bottom: 10px;
 }
 
 button.btn.btn-primary {
@@ -59,13 +60,13 @@ button.btn.btn-primary {
 }
 
 .form-label {
-  margin-bottom: 0 !important;
+  margin-bottom: 10px;
   margin-top: 0.5em;
 }
 
-.form-check {
+/* .form-check {
   margin-top: 1em;
-}
+} */
 
 .card-body {
   margin-left: 2em;
