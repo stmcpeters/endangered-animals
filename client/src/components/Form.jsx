@@ -1,68 +1,79 @@
 import React, { useState, useEffect } from 'react'
 import { Button, Form } from "react-bootstrap"
 
-const MyForm = ({ onSaveStudent, editingStudent, onUpdateStudent }) => {
+const MyForm = ({ onSaveSighting, editingSighting, onUpdateSighting }) => {
 
     // This is the original State with not initial student 
-    const [student, setStudent] = useState(editingStudent || {
-        firstname: "",
-        lastname: "",
-        is_current: false
+    const [sighting, setSighting] = useState(editingSighting || {
+        individual_id: "",
+        sighting_date: "",
+        location: "",
+        healthy: "",
+        researcher_email: ""
     });
 
     //create functions that handle the event of the user typing into the form
-    const handleNameChange = (event) => {
-        const firstname = event.target.value;
-        setStudent((student) => ({ ...student, firstname }));
+    const handleIndividualIdChange = (event) => {
+        const individual_id = event.target.value;
+        setSighting((sighting) => ({ ...sighting, individual_id }));
 
     };
 
-    const handleLastnameChange = (event) => {
-        const lastname = event.target.value;
-        setStudent((student) => ({ ...student, lastname }));
+    const handleSightingDateChange = (event) => {
+        const sighting_date = event.target.value;
+        setSighting((sighting) => ({ ...sighting, sighting_date }));
     };
 
-    const handleCheckChange = (event) => {
-        const is_current = event.target.checked;
-        //console.log(iscurrent);
-        setStudent((student) => ({ ...student, is_current }));
+    const handleLocationChange = (event) => {
+        const location = event.target.value;
+        setSighting((sighting) => ({ ...sighting, location }));
+    };
+
+    const handleHealthChange = (event) => {
+        const healthy = event.target.value;
+        setSighting((sighting) => ({ ...sighting, healthy }));
+    };
+
+    const handleResearcherEmailChange = (event) => {
+        const researcher_email = event.target.value;
+        setSighting((sighting) => ({ ...sighting, researcher_email }));
     };
 
     const clearForm = () => {
-        setStudent({ firstname: "", lastname: "", is_current: false })
+        setSighting({ individual_id: "", sighting_date: "", location: "", healthy: "", researcher_email: "" })
     }
 
     //A function to handle the post request
-    const postStudent = (newStudent) => {
-        return fetch("http://localhost:8080/api/students", {
+    const postSighting = (newSighting) => {
+        return fetch("http://localhost:8080/api/sightings", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(newStudent),
+            body: JSON.stringify(newSighting),
         })
             .then((response) => {
                 return response.json();
             })
             .then((data) => {
                 //console.log("From the post ", data);
-                //I'm sending data to the List of Students (the parent) for updating the list
-                onSaveStudent(data);
+                //I'm sending data to the List of Sightings (the parent) for updating the list
+                onSaveSighting(data);
                 //this line just for cleaning the form
                 clearForm();
             });
     };
 
     //A function to handle the post request
-    const putStudent = (toEditStudent) => {
-        return fetch(`http://localhost:8080/api/students/${toEditStudent.id}`, {
+    const putSighting = (toEditSighting) => {
+        return fetch(`http://localhost:8080/api/sightings/${toEditSighting.id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(toEditStudent),
+            body: JSON.stringify(toEditSighting),
         })
             .then((response) => {
                 return response.json();
             })
             .then((data) => {
-                onUpdateStudent(data);
+                onUpdateSighting(data);
                 //this line just for cleaning the form
                 clearForm();
             });
@@ -72,47 +83,73 @@ const MyForm = ({ onSaveStudent, editingStudent, onUpdateStudent }) => {
     //A function to handle the submit in both cases - Post and Put request!
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (student.id) {
-            putStudent(student);
+        if (sighting.id) {
+            putSighting (sighting);
         } else {
-            postStudent(student);
+            postSighting (sighting);
         }
     };
 
     return (
-        <Form className='form-students' onSubmit={handleSubmit}>
+        <Form className='form-sightings' onSubmit={handleSubmit}>
             <Form.Group>
-                <Form.Label>First Name</Form.Label>
+                <Form.Label>Individual ID</Form.Label>
                 <input
                     type="text"
-                    id="add-user-name"
-                    placeholder="First Name"
+                    id="add-individual-id"
+                    placeholder="Individual ID"
                     required
-                    value={student.firstname}
-                    onChange={handleNameChange}
+                    value={sighting.individual_id}
+                    onChange={handleIndividualIdChange}
                 />
             </Form.Group>
             <Form.Group>
-                <Form.Label>Last Name</Form.Label>
+                <Form.Label>Sighting Date</Form.Label>
                 <input
                     type="text"
-                    id="add-user-lastname"
-                    placeholder="Last Name"
+                    id="add-sighting-date"
+                    placeholder="YYYY-MM-DD"
                     required
-                    value={student.lastname}
-                    onChange={handleLastnameChange}
+                    value={sighting.sighting_date}
+                    onChange={handleSightingDateChange}
                 />
             </Form.Group>
-            <Form.Check
-                type={'checkbox'}
-                id={`isCurrent`}
-                checked={student.is_current}
-                onChange={handleCheckChange}
-                label={`Are they in the current program?`}
-            />
             <Form.Group>
-            <Button type="submit" variant="outline-success">{student.id ? "Edit Student" : "Add Student"}</Button>
-            {student.id ? <Button type="button" variant="outline-warning" onClick={clearForm}>Cancel</Button> : null}
+                <Form.Label>Location</Form.Label>
+                <input
+                    type="text"
+                    id="add-location"
+                    placeholder="Location"
+                    required
+                    value={sighting.location}
+                    onChange={handleLocationChange}
+                />
+            </Form.Group>
+            <Form.Group>
+                <Form.Label>Healthy</Form.Label>
+                <input
+                    type="text"
+                    id="add-health"
+                    placeholder="True or False"
+                    required
+                    value={sighting.healthy}
+                    onChange={handleHealthChange}
+                />
+            </Form.Group>
+            <Form.Group>
+                <Form.Label>Email of Researcher</Form.Label>
+                <input
+                    type="text"
+                    id="add-researcher-email"
+                    placeholder="Researcher's Email"
+                    required
+                    value={sighting.researcher_email}
+                    onChange={handleResearcherEmailChange}
+                />
+            </Form.Group>
+            <Form.Group>
+            <Button type="submit" variant="outline-success">{sighting.id ? "Edit Sighting" : "Add Sighting"}</Button>
+            {sighting.id ? <Button type="button" variant="outline-warning" onClick={clearForm}>Cancel</Button> : null}
             </Form.Group>
         </Form>
     );
