@@ -17,7 +17,9 @@ const Sightings = ({sighting, toUpdate, toDelete}) => {
         <Card>
             <Card.Body>
             <Card.Title>
+                {/* everything to display on the sightings cards */}
                         {sighting.individual_id} <br></br>
+                        {/* splits the timestamp string at the 'T' character (separates date and time in long format) and takes date only */}
                         {sighting.sighting_date.split('T')[0]} <br></br>
                         {sighting.location}<br></br>
                         {sighting.healthy}
