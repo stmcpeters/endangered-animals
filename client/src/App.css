@@ -72,3 +72,7 @@ button.btn.btn-primary {
   margin-left: 2em;
   margin-right: 2em;
 }
+
+.card {
+  margin: 10px 0px;
+}
