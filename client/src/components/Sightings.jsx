@@ -18,7 +18,7 @@ const Sightings = ({sighting, toUpdate, toDelete}) => {
             <Card.Body>
             <Card.Title>
                         {sighting.individual_id} <br></br>
-                        {sighting.sighting_date} <br></br>
+                        {sighting.sighting_date.split('T')[0]} <br></br>
                         {sighting.location}<br></br>
                         {sighting.healthy}
             </Card.Title>
