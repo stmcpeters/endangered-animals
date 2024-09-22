@@ -10,8 +10,8 @@ function App() {
   return (
     <div className="App">
       <MyNavBar />
-      <ListSightings />
       <ListIndividuals />
+      <ListSightings />
     </div>
   )
 }
