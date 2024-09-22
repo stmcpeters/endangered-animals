@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import * as ioicons from 'react-icons/io5'
-import MyForm from './Form';
+import MyForm from './SightingsForm';
 import Sightings from './Sightings';
 
 const ListSightings = () => {
