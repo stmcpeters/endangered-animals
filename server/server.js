@@ -32,15 +32,16 @@ app.post('/api/sightings', async (req, res) => {
     try {
         const newSighting = {
             individual_id: req.body.individual_id,
+            individuals_nickname: req.body.individuals_nickname,
             sighting_date: req.body.sighting_date,
             location: req.body.location,
             healthy: req.body.healthy,
             researcher_email: req.body.researcher_email
         };
-        //console.log([newSighting.individual_id, newSighting.sighting_date, newSighting.location, newSighting.healthy, newSighting.researcher_email]);
+        //console.log([newSighting.individual_id, newSighting.sighting_date, newSighting.location, newSighting.healthy, newSighting.researcher_email, newSighting.individual_nickname]);
         const result = await db.query(
-            'INSERT INTO sightings(individual_id, sighting_date, location, healthy, researcher_email) VALUES($1, $2, $3, $4, $5) RETURNING *',
-            [newSighting.individual_id, newSighting.sighting_date, newSighting.location, newSighting.healthy, newSighting.researcher_email],
+            'INSERT INTO sightings(individual_id, individuals_nickname, sighting_date, location, healthy, researcher_email) VALUES($1, $2, $3, $4, $5, $6) RETURNING *',
+            [newSighting.individual_id, newSighting.individuals_nickname, newSighting.sighting_date, newSighting.location, newSighting.healthy, newSighting.researcher_email],
         );
         console.log(result.rows[0]);
         res.json(result.rows[0]);
@@ -71,12 +72,12 @@ app.put('/api/sightings/:id', async (req, res) =>{
     //console.log(req.params);
     //This will be the id that I want to find in the DB - the sighting to be updated
     const sightingId = req.params.id;
-    const updatedSighting = { individual_id: req.body.individual_id, sighting_date: req.body.sighting_date, location: req.body.location, healthy: req.body.healthy, researcher_email: req.body.researcher_email}
+    const updatedSighting = { individual_id: req.body.individual_id,individuals_nickname: req.body.individuals_nickname, sighting_date: req.body.sighting_date, location: req.body.location, healthy: req.body.healthy, researcher_email: req.body.researcher_email}
     console.log("In the server from the url - the sighting id", sightingId);
     console.log("In the server, from the react - the sighting to be edited", updatedSighting);
     // UPDATE sightings SET location = "something" WHERE id="16";
-    const query = `UPDATE sightings SET individual_id=$1, sighting_date=$2, location=$3, healthy=$4, researcher_email=$5 WHERE id=${sightingId} RETURNING *`;
-    const values = [updatedSighting.individual_id, updatedSighting.sighting_date, updatedSighting.location, updatedSighting.healthy, updatedSighting.researcher_email];
+    const query = `UPDATE sightings SET individual_id=$1, individuals_nickname=$2, sighting_date=$3, location=$4, healthy=$5, researcher_email=$6 WHERE id=${sightingId} RETURNING *`;
+    const values = [updatedSighting.individual_id, updatedSighting.individuals_nickname, updatedSighting.sighting_date, updatedSighting.location, updatedSighting.healthy, updatedSighting.researcher_email];
     try {
       const updated = await db.query(query, values);
       console.log(updated.rows[0]);

@@ -25,6 +25,12 @@ a.navbar-brand {
   flex: 1
 }
 
+.list-individuals {
+  text-align: center;
+  margin-top: 25px;
+  flex: 1
+}
+
 ul {
   list-style-type: none;
 }

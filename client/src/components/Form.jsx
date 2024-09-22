@@ -6,6 +6,7 @@ const MyForm = ({ onSaveSighting, editingSighting, onUpdateSighting }) => {
     // This is the original State with not initial student 
     const [sighting, setSighting] = useState(editingSighting || {
         individual_id: "",
+        individual_nickname: "",
         sighting_date: "",
         location: "",
         healthy: "",
@@ -16,7 +17,11 @@ const MyForm = ({ onSaveSighting, editingSighting, onUpdateSighting }) => {
     const handleIndividualIdChange = (event) => {
         const individual_id = event.target.value;
         setSighting((sighting) => ({ ...sighting, individual_id }));
+    };
 
+    const handleIndividualNicknameChange = (event) => {
+        const individuals_nickname = event.target.value;
+        setSighting((sighting) => ({ ...sighting, individuals_nickname }));
     };
 
     const handleSightingDateChange = (event) => {
@@ -40,7 +45,7 @@ const MyForm = ({ onSaveSighting, editingSighting, onUpdateSighting }) => {
     };
 
     const clearForm = () => {
-        setSighting({ individual_id: "", sighting_date: "", location: "", healthy: "", researcher_email: "" })
+        setSighting({ individual_id: "", individual_nickname: "", sighting_date: "", location: "", healthy: "", researcher_email: "" })
     }
 
     //A function to handle the post request
@@ -104,11 +109,21 @@ const MyForm = ({ onSaveSighting, editingSighting, onUpdateSighting }) => {
                 />
             </Form.Group>
             <Form.Group>
-                <Form.Label>Sighting Date</Form.Label>
+                <Form.Label>Individual Nickname</Form.Label>
                 <input
                     type="text"
+                    id="add-individual-nickname"
+                    placeholder="Individual Nickname"
+                    required
+                    value={sighting.individuals_nickname}
+                    onChange={handleIndividualNicknameChange}
+                />
+            </Form.Group>
+            <Form.Group>
+                <Form.Label>Sighting Date</Form.Label>
+                <input
+                    type="date"
                     id="add-sighting-date"
-                    placeholder="YYYY-MM-DD"
                     required
                     value={sighting.sighting_date}
                     onChange={handleSightingDateChange}
