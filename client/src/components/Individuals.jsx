@@ -18,9 +18,9 @@ const Individuals = ({individual, toUpdate, toDelete}) => {
             <Card.Body>
             <Card.Title>
                 {/* everything to display on the individuals cards */}
-                        {individual.id} <br></br>
-                        {individual.individuals_nickname}<br></br>
-                        {individual.sex}
+                  ID: {individual.id} <br></br>
+                  Nickname: {individual.individuals_nickname}<br></br>
+                  {individual.sex}
             </Card.Title>
             <Button variant="outline-danger" onClick={()=>{onDelete(individual)}} style={{padding: '0.6em', marginRight:'0.9em'}}><ioicons.IoTrash/></Button>
             <Button variant="outline-info" onClick={()=>{onUpdate(individual)}} style={{padding: '0.6em'}}> <ioicons.IoSync/></Button>
