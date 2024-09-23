@@ -1,25 +1,47 @@
-# Your First Express and React App with Vite
- ⚡ Create a working full stack app with React and Express in minutes by running your client using Vite, your server using Express, and dumping your db in the template ⚡
+# Wildlife Watch
 
-## Step by Step instructions - To use this project as your start point  🚀  
-### To create the whole project
+## Overview
+Wildlife Watch is a simple, user-friendly web application that allows you to view, add, edit, and delete endangered species tracked around the United States. Currently, we have 3 individuals from 3 different species. We are tracking Lou, the Hawaiian Monk Seal, Benji the Florida Panther, and Luna the Mexican Wolf.Add your own sightings of these animals, or feel free to add a new individual you find! This project was created for week 10's Techtonica program assignment. The system uses a React frontend and a Node.js backend to create an interactive UI.
 
+## Demo
+![Wildlife Watch](client/src/assets/demo.gif)
 
-1. Go to your source directory in your terminal and run the command `git clone https://github.com/Yosolita1978/Template2023React-Vite.git NAMENEWDIRECTORY`
+## Features
+- View a list of species, individuals and sightings
+- Add new species, individuals and sightings
+- Edit species, individuals and sightings
+- Delete species, individuals and sightings
+- Responsive design built with React
+- Real-time data synchronization between frontend and backend
 
-2. To clean the owner git out of the main directory, run the command `rm -rf .git`
+## Technologies
+### Frontend
+- React: JavaScript library for building responsive user interfaces
+- React Bootstrap: Styling and layout of the app
+- Fetch API: Makes HTTP requests to the backend <br>
+### Backend
+- Express.js: A Node.js framework for setting up the server and handling HTTP requests
+- Node.js: JavaScript environment used to run the Express server
+- Cors: Middleware to handle Cross-Origin Resource Sharing
+- Dotenv: Hides sensitive environment variables
+- PostgreSQL: Database management system
 
-3. Then while still within the main directory in your terminal, run the command `git init` to start your own git track 
+## Installation
+### Pre Requisites 
+- Node.js (which includes npm): [Download Node.js](https://nodejs.org/en/download/package-manager)
+- Git (for cloning the repository): [Download Git](https://git-scm.com/downloads)
 
-![You will something like this in your terminal](https://user-images.githubusercontent.com/102179075/227304861-7ad633d7-5ec0-463a-8554-9e8b4c8caaad.png?raw=true)
-
-4. Go to the server folder in the project (`cd server`) and run the command `npm install`
-
-5. Inside your server folder, create an .env file with `touch .env`
-
-⚠️ All these instructions should be inside your server folder ⚠️
-
-6. There are two ways to restore the DB dump file the project already contains: 
+1. Clone the repo <br>
+`git clone https://github.com/stmcpeters/endangered-animals`<br>
+`cd endangered-animals` 
+2. Set up the backend
+- Navigate to the `server` folder
+- Install backend dependencies: `npm install`
+- Create a `.env` file in the server directory and add your environment variables (see `.env-sample` for example)
+- Import and configure `dotenv` in your `server.js` file: <br>
+`import dotenv from 'dotenv';` <br>
+`dotenv.config();` <br>
+3. There are two ways to restore the DB dump file the project already contains: 
 
 A- If you have postgres set up postgres with an User:  
  * just run the command `psql -U postgres -f db.sql`. Make sure that you have your Postgres password on hand. The psql console will ask for your password. 
@@ -32,36 +54,46 @@ B- If your initial configuration of postgres doesn't require a User:
 Here is what your `.env` might look like:
 
 ```
-DB_URI="postgresql://localhost/techtonica"
+DB_URI="postgresql://localhost/animals"
 ``` 
-For this template, the name of your db should be `techtonica`.
+For this template, the name of your db should be `animals`.
 
-⚠️ If you don't see a `techtonica` db, you can create one. From the terminal, navigate to the psql command line with `psql` and type `create database techtonica;` - don't forget the semicolon!! ⚠️
+⚠️ If you don't see a `animals` db, you can create one. From the terminal, navigate to the psql command line with `psql` and type `create database animals;` - don't forget the semicolon!! ⚠️
 
-![You will something like this in your terminal](https://raw.githubusercontent.com/Yosolita1978/screenshoots/a4674c79f61b39547b068044c5e5f2bd8510a4b8/2023/H1/Screen%20Shot%202023-03-22%20at%2011.03.12%20PM.png)
+- Start the server using: `npm start`
 
-8. Go to the client folder in the project (`cd .. and cd client`) and run the command `npm install`
+4. Set up the frontend:
+- Navigate to the `client` folder
+- Install dependencies: `npm install`
+- Start the React development server using `npm run dev`
 
-🔎 The `npm install` command installs the required dependencies defined in the package.json files and generates a node_modules folder with the installed modules.
+## API Endpoints
+### Sightings
+- GET `/api/sightings`: Fetches all sightings
+- GET `/api/sightings/:id`: Fetches a specific sighting by ID
+- POST `/api/sightings`: Creates a new sighting
+- PUT `/api/sightings/:id`: Updates an existing sightings
+- DELETE `/api/sightings/:id`: Deletes a sighting
+### Individuals
+- GET `/api/individuals`: Fetches all individuals
+- GET `/api/individuals/:id`: Fetches a specific individual by ID
+- POST `/api/individuals`: Creates a new individual
+- PUT `/api/individuals/:id`: Updates an existing individual
+- DELETE `/api/individuals/:id`: Deletes an individual
+### Species
+- GET `/api/species`: Fetches all species
+- GET `/api/species/:id`: Fetches a specific species by ID
+- POST `/api/species`: Creates a new species
+- PUT `/api/species/:id`: Updates an existing species
+- DELETE `/api/species/:id`: Deletes a species
 
-⚡ Note: Using Vite we can avoid all the package deprecation warnings ⚡
+## Stretch Goals/Help Wanted
+- Search bar/filter sightings or individuals by health status, date, conservation status, etc
+- Ability to favorite individuals
+- Testing for frontend components and backend endpoints
 
-9. If you want to run both servers using concurrently (which is already a npm dependency on the server) you can keep the script in the package.json in the server that reads `"dev": " concurrently 'npm start' 'cd .. && cd client && npm run dev' "`. If you run the command `npm run dev` from within your server, both the client and backend servers will start.
+## Contributing
+Contributions are welcomed to this project! If you have an idea for a new feature or a bug fix, please open an issue or a pull request.
 
-10. Go to localhost:5173 and you should see something like this  💪
-
-![You will something like this in your terminal.](https://raw.githubusercontent.com/Yosolita1978/screenshoots/2f6afdd2318809714071b7625776c195903758ca/2023/H1/Screen%20Shot%202023-03-22%20at%2010.40.36%20PM.png)
-
-⚡ **Notes** ⚡  
-* React requires **Node >= 14.0.0** & **npm >= 5.6**
-* This template is using icons from `react-icons/io5` and `react-bootstrap` in the frontend. You can see all the frontend dependencies in the package.json on the `client` folder
-* Please note that your backend server will run from `port 8080`, and your frontend React server will run from `port 5173` (the default Vite port).
-
-* Confused about why use Vite? 🤔 → Check out the [Create a new React app with Vite](https://scrimba.com/articles/create-react-app-with-vite/)
-
-⚙️ Links that you could need:
-
-* The instructions for [pg](https://node-postgres.com/apis/pool)  
-* Setup [postgres correctly](https://github.com/Techtonica/curriculum/blob/main/databases/installing-postgresql.md)
-
-
+## License
+This project is licensed under the MIT License.

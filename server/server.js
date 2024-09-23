@@ -172,7 +172,7 @@ app.get('/api/species', async (req, res) => {
     }
 });
 
-// POST request to create new individuals
+// POST request to create new species
 app.post('/api/species', async (req, res) => {
     try {
         const newSpecies = {
