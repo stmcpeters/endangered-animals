@@ -62,7 +62,7 @@ const ListSpecies = () => {
     return (
         <div className="mybody">
         <div className="list-species">
-            <h2>Tracked Species</h2>
+            <h2>Tracked Endangered Species</h2>
             <ul>
                 {species.map((species) => {
                     return <li key={species.id}> <Species species={species} toDelete={onDelete} toUpdate={onUpdate} /></li>

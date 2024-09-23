@@ -62,7 +62,7 @@ const ListSightings = () => {
     return (
         <div className="mybody">
         <div className="list-sightings">
-            <h2>Latest Endangered Animal Sightings</h2>
+            <h2>Latest Sightings</h2>
             <ul>
                 {sighting.map((sighting) => {
                     return <li key={sighting.id}> <Sightings sighting={sighting} toDelete={onDelete} toUpdate={onUpdate} /></li>

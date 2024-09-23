@@ -1,6 +1,6 @@
 .App {
   min-height: 100vh;
-  background-color: rgb(238, 232, 232);
+  background-color: aliceblue;
   margin: 5px;
 }
 
@@ -11,7 +11,8 @@
 }
 
 a.navbar-brand {
-  margin-inline-start: -5em;
+  margin-inline-start: 5em;
+  border-radius: 5px;
 }
 
 .nav-link {
@@ -19,7 +20,9 @@ a.navbar-brand {
   margin-left: 5em;
 }
 
-.list-sightings {
+.list-sightings,
+.list-species,
+.list-individuals {
   text-align: center;
   margin-top: 25px;
   flex: 1
@@ -72,6 +75,7 @@ button.btn.btn-primary {
 .card-body {
   margin-left: 2em;
   margin-right: 2em;
+  line-height: 10px;
 }
 
 .card {

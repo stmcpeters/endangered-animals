@@ -62,7 +62,7 @@ const ListIndividuals = () => {
     return (
         <div className="mybody">
         <div className="list-individuals">
-            <h2>Currently Tracked Individuals</h2>
+            <h2>Individuals</h2>
             <ul>
                 {individual.map((individual) => {
                     return <li key={individual.id}> <Individuals individual={individual} toDelete={onDelete} toUpdate={onUpdate} /></li>
