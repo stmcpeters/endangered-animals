@@ -26,6 +26,7 @@ const Sightings = ({sighting, toUpdate, toDelete}) => {
                         {sighting.location}<br></br>
                         {/* converts boolean value to string to display on card */}
                         Healthy: {String(sighting.healthy)}<br></br>
+                        Researcher Email: {sighting.researcher_email}
             </Card.Title>
             <Button variant="outline-danger" onClick={()=>{onDelete(sighting)}} style={{padding: '0.6em', marginRight:'0.9em'}}><ioicons.IoTrash/></Button>
             <Button variant="outline-info" onClick={()=>{onUpdate(sighting)}} style={{padding: '0.6em'}}> <ioicons.IoSync/></Button>
