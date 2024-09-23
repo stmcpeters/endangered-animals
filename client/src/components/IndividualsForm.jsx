@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { Button, Form } from "react-bootstrap"
 
-const IndividualsForm = ({ onSaveIndividuals, editingIndividuals, onUpdateIndividuals }) => {
+const IndividualsForm = ({ onSaveIndividual, editingIndividual, onUpdateIndividual }) => {
 
     // This is the original State with not initial student 
-    const [individual, setIndividuals] = useState(editingIndividuals || {
+    const [individual, setIndividuals] = useState(editingIndividual || {
         individual_nickname: "",
         sex: "",
         species_id: ""
@@ -12,13 +12,13 @@ const IndividualsForm = ({ onSaveIndividuals, editingIndividuals, onUpdateIndivi
 
     //create functions that handle the event of the user typing into the form
     const handleIndividualNicknameChange = (event) => {
-        const individual_nickname = event.target.value;
-        setIndividuals((individuals) => ({ ...individuals, individual_nickname }));
+        const individuals_nickname = event.target.value;
+        setIndividuals((individuals) => ({ ...individuals, individuals_nickname }));
     };
 
     const handleIndividualSexChange = (event) => {
-        const individual_sex = event.target.value;
-        setIndividuals((individuals) => ({ ...individuals, individual_sex}));
+        const sex = event.target.value;
+        setIndividuals((individuals) => ({ ...individuals, sex}));
     };
 
     const handleSpeciesIdChange = (event) => {
@@ -32,7 +32,7 @@ const IndividualsForm = ({ onSaveIndividuals, editingIndividuals, onUpdateIndivi
     }
 
     //A function to handle the post request
-    const postIndividuals = (newIndividual) => {
+    const postIndividual = (newIndividual) => {
         return fetch("http://localhost:8080/api/individuals", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -44,24 +44,24 @@ const IndividualsForm = ({ onSaveIndividuals, editingIndividuals, onUpdateIndivi
             .then((data) => {
                 //console.log("From the post ", data);
                 //I'm sending data to the List of Sightings (the parent) for updating the list
-                onSaveIndividuals(data);
+                onSaveIndividual(data);
                 //this line just for cleaning the form
                 clearForm();
             });
     };
 
     //A function to handle the post request
-    const putIndividuals = (toEditIndividuals) => {
-        return fetch(`http://localhost:8080/api/individuals/${toEditIndividuals.id}`, {
+    const putIndividual = (toEditIndividual) => {
+        return fetch(`http://localhost:8080/api/individuals/${toEditIndividual.id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(toEditIndividuals),
+            body: JSON.stringify(toEditIndividual),
         })
             .then((response) => {
                 return response.json();
             })
             .then((data) => {
-                onUpdateIndividuals(data);
+                onUpdateIndividual(data);
                 //this line just for cleaning the form
                 clearForm();
             });
@@ -72,9 +72,9 @@ const IndividualsForm = ({ onSaveIndividuals, editingIndividuals, onUpdateIndivi
     const handleSubmit = (e) => {
         e.preventDefault();
         if (individual.id) {
-            putIndividuals (individual);
+            putIndividual (individual);
         } else {
-            postIndividuals (individual);
+            postIndividual (individual);
         }
     };
 
@@ -85,7 +85,7 @@ const IndividualsForm = ({ onSaveIndividuals, editingIndividuals, onUpdateIndivi
                 <input
                     type="text"
                     id="add-individual-nickname"
-                    placeholder="Individual ID"
+                    placeholder="Nickname"
                     required
                     value={individual.individuals_nickname}
                     onChange={handleIndividualNicknameChange}
