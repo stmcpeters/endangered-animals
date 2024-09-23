@@ -12,7 +12,7 @@ const ListIndividuals = () => {
     const [editingIndividual, setEditingIndividual] = useState(null)
 
     const loadIndividuals = () => {
-        // A function to fetch the list of sightings that will be load anytime that list change
+        // A function to fetch the list of individuals that will be load anytime that list change
         fetch("http://localhost:8080/api/individuals")
             .then((response) => response.json())
             .then((individual) => {
@@ -25,21 +25,21 @@ const ListIndividuals = () => {
     }, [individual]);
 
     const onSaveIndividual = (newIndividual) => {
-        //console.log(newSighting, "From the parent - List of Sightings");
+        //console.log(newIndividual, "From the parent - List of individuals");
         setIndividual((individual) => [...individual, newIndividual]);
     }
 
 
-    //A function to control the update in the parent (student component)
+    //A function to control the update in the parent (individual component)
     const updateIndividual = (savedIndividual) => {
-        // console.log("Line 29 savedSighting", savedSighting);
-        // This function should update the whole list of sightings - 
+        // console.log("Line 29 savedIndividual", savedIndividual);
+        // This function should update the whole list of individuals - 
         loadIndividuals();
     }
 
     //A function to handle the Delete funtionality
     const onDelete = (individual) => {
-        //console.log(sighting, "delete method")
+        //console.log(individual, "delete method")
         return fetch(`http://localhost:8080/api/individuals/${individual.id}`, {
             method: "DELETE"
         }).then((response) => {
@@ -52,7 +52,7 @@ const ListIndividuals = () => {
 
     //A function to handle the Update functionality
     const onUpdate = (toUpdateIndividual) => {
-        //console.log(toUpdateSighting);
+        //console.log(toUpdateIndividual);
         setEditingIndividual(toUpdateIndividual);
 
     }

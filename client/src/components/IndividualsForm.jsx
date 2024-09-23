@@ -3,7 +3,7 @@ import { Button, Form } from "react-bootstrap"
 
 const IndividualsForm = ({ onSaveIndividual, editingIndividual, onUpdateIndividual }) => {
 
-    // This is the original State with not initial student 
+    // This is the original State with not initial individual 
     const [individual, setIndividuals] = useState(editingIndividual || {
         individual_nickname: "",
         sex: "",
@@ -43,7 +43,7 @@ const IndividualsForm = ({ onSaveIndividual, editingIndividual, onUpdateIndividu
             })
             .then((data) => {
                 //console.log("From the post ", data);
-                //I'm sending data to the List of Sightings (the parent) for updating the list
+                //I'm sending data to the List of individuals (the parent) for updating the list
                 onSaveIndividual(data);
                 //this line just for cleaning the form
                 clearForm();

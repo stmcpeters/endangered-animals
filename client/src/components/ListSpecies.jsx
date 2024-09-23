@@ -5,14 +5,14 @@ import Species from './Species';
 
 const ListSpecies = () => {
 
-    // this is my original state with an array of individuals 
+    // this is my original state with an array of species 
     const [species, setSpecies] = useState([]);
 
     //this is the state needed for the UpdateRequest
     const [editingSpecies, setEditingSpecies] = useState(null)
 
     const loadSpecies = () => {
-        // A function to fetch the list of sightings that will be load anytime that list change
+        // A function to fetch the list of species that will be load anytime that list change
         fetch("http://localhost:8080/api/species")
             .then((response) => response.json())
             .then((species) => {
@@ -25,21 +25,21 @@ const ListSpecies = () => {
     }, [species]);
 
     const onSaveSpecies = (newSpecies) => {
-        //console.log(newSighting, "From the parent - List of Sightings");
+        //console.log(newSpecies, "From the parent - List of Species");
         setSpecies((species) => [...species, newSpecies]);
     }
 
 
-    //A function to control the update in the parent (student component)
+    //A function to control the update in the parent (species component)
     const updateSpecies = (savedSpecies) => {
-        // console.log("Line 29 savedSighting", savedSighting);
-        // This function should update the whole list of sightings - 
+        // console.log("Line 29 savedSpecies", savedSpecies);
+        // This function should update the whole list of species - 
         loadSpecies();
     }
 
     //A function to handle the Delete funtionality
     const onDelete = (species) => {
-        //console.log(sighting, "delete method")
+        //console.log(species, "delete method")
         return fetch(`http://localhost:8080/api/species/${species.id}`, {
             method: "DELETE"
         }).then((response) => {

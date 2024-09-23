@@ -30,7 +30,7 @@ const ListSightings = () => {
     }
 
 
-    //A function to control the update in the parent (student component)
+    //A function to control the update in the parent (sightings component)
     const updateSighting = (savedSighting) => {
         // console.log("Line 29 savedSighting", savedSighting);
         // This function should update the whole list of sightings - 
