@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import * as ioicons from 'react-icons/io5'
 import MyForm from './SightingsForm';
 import Individuals from './Individuals';
+import IndividualsForm from './IndividualsForm';
 
 const ListIndividuals = () => {
 
@@ -69,7 +70,7 @@ const ListIndividuals = () => {
                 })}
             </ul>
         </div>
-        {/* <MyForm key={editingIndividual ? editingIndividual.id : null} onSaveIndividual={onSaveIndividual} editingIndividual={editingIndividual} onUpdateIndividual={updateIndividual} /> */}
+        <IndividualsForm key={editingIndividual ? editingIndividual.id : null} onSaveIndividual={onSaveIndividual} editingIndividual={editingIndividual} onUpdateIndividual={updateIndividual} />
         </div>
     );
 }

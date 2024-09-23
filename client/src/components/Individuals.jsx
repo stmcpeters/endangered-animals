@@ -18,7 +18,7 @@ const Individuals = ({individual, toUpdate, toDelete}) => {
             <Card.Body>
             <Card.Title>
                 {/* everything to display on the individuals cards */}
-                  ID: {individual.id} <br></br>
+                  Individual ID: {individual.id} <br></br>
                   Nickname: {individual.individuals_nickname}<br></br>
                   {individual.sex}
             </Card.Title>
