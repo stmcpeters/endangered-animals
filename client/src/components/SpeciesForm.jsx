@@ -90,7 +90,7 @@ const SpeciesForm = ({ onSaveSpecies, editingSpecies, onUpdateSpecies }) => {
                 <input
                     type="text"
                     id="add-common-name"
-                    placeholder="Common Name"
+                    placeholder="e.g. 'Bobcat'"
                     required
                     value={species.common_name}
                     onChange={handleCommonNameChange}
@@ -101,7 +101,7 @@ const SpeciesForm = ({ onSaveSpecies, editingSpecies, onUpdateSpecies }) => {
                 <input
                     type="text"
                     id="add-scientific-name"
-                    placeholder="Scientific Name"
+                    placeholder="e.g. 'Lynx rufus'"
                     required
                     value={species.scientific_name}
                     onChange={handleScientificNameChange}
@@ -112,7 +112,7 @@ const SpeciesForm = ({ onSaveSpecies, editingSpecies, onUpdateSpecies }) => {
                 <input
                     type="text"
                     id="add-population"
-                    placeholder="Living Population"
+                    placeholder="e.g. 2000"
                     required
                     value={species.population}
                     onChange={handlePopulationChange}
@@ -123,7 +123,7 @@ const SpeciesForm = ({ onSaveSpecies, editingSpecies, onUpdateSpecies }) => {
                 <input
                     type="text"
                     id="add-conservation-status"
-                    placeholder="Conservation Status"
+                    placeholder="e.g. 'Vulnerable'"
                     required
                     value={species.conservation_status}
                     onChange={handleConservationStatusChange}

@@ -85,7 +85,7 @@ const IndividualsForm = ({ onSaveIndividual, editingIndividual, onUpdateIndividu
                 <input
                     type="text"
                     id="add-individual-nickname"
-                    placeholder="Nickname"
+                    placeholder="e.g 'Kevin'"
                     required
                     value={individual.individuals_nickname}
                     onChange={handleIndividualNicknameChange}
@@ -96,7 +96,7 @@ const IndividualsForm = ({ onSaveIndividual, editingIndividual, onUpdateIndividu
                 <input
                     type="text"
                     id="add-individual-sex"
-                    placeholder="Male or Female"
+                    placeholder="e.g. 'Male' or 'Female'"
                     required
                     value={individual.sex}
                     onChange={handleIndividualSexChange}
@@ -107,7 +107,7 @@ const IndividualsForm = ({ onSaveIndividual, editingIndividual, onUpdateIndividu
                 <input
                     type="text"
                     id="add-species-id"
-                    placeholder="ID of species"
+                    placeholder="e.g. 2"
                     required
                     value={individual.species_id}
                     onChange={handleSpeciesIdChange}

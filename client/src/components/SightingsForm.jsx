@@ -113,7 +113,7 @@ const MyForm = ({ onSaveSighting, editingSighting, onUpdateSighting }) => {
                 <input
                     type="text"
                     id="add-individual-nickname"
-                    placeholder="Individual Nickname"
+                    placeholder="e.g. 'Kevin'"
                     required
                     value={sighting.individuals_nickname}
                     onChange={handleIndividualNicknameChange}
@@ -134,7 +134,7 @@ const MyForm = ({ onSaveSighting, editingSighting, onUpdateSighting }) => {
                 <input
                     type="text"
                     id="add-location"
-                    placeholder="Location"
+                    placeholder="e.g. Louisiana"
                     required
                     value={sighting.location}
                     onChange={handleLocationChange}
@@ -156,7 +156,7 @@ const MyForm = ({ onSaveSighting, editingSighting, onUpdateSighting }) => {
                 <input
                     type="text"
                     id="add-researcher-email"
-                    placeholder="Researcher's Email"
+                    placeholder="e.g. 'janedoe123@zmail.com'"
                     required
                     value={sighting.researcher_email}
                     onChange={handleResearcherEmailChange}
