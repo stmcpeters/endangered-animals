@@ -1,7 +1,7 @@
 # Wildlife Watch
 
 ## Overview
-Wildlife Watch is a simple, user-friendly web application that allows you to view, add, edit, and delete endangered species tracked around the United States. Currently, we have 3 individuals from 3 different species. We are tracking Lou, the Hawaiian Monk Seal, Benji the Florida Panther, and Luna the Mexican Wolf.Add your own sightings of these animals, or feel free to add a new individual you find! This project was created for week 10's Techtonica program assignment. The system uses a React frontend and a Node.js backend to create an interactive UI.
+Wildlife Watch is a simple, user-friendly web application that allows you to view, add, edit, and delete endangered species tracked around the United States. Currently, we have 3 individuals from 3 different species. We are tracking Lou, the Hawaiian Monk Seal, Benji the Florida Panther, and Luna the Mexican Wolf. Add your own sightings of these animals, or feel free to add a new individual you find! This project was created for week 10's Techtonica program assignment. The system uses a React frontend and a Node.js backend to create an interactive UI.
 
 ## Demo
 ![Wildlife Watch](client/src/assets/demo.gif)
