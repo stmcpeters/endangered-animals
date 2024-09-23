@@ -90,7 +90,7 @@ For this template, the name of your db should be `animals`.
 ## Stretch Goals/Help Wanted
 - Search bar/filter sightings or individuals by health status, date, conservation status, etc
 - Ability to favorite individuals
-- Implement testing for frontend components and backend endpoints
+- Implement testing for frontend components
 
 ## Contributing
 Contributions are welcomed to this project! If you have an idea for a new feature or a bug fix, please open an issue or a pull request.
